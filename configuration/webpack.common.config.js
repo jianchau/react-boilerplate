@@ -94,25 +94,15 @@ module.exports = {
     }),
     new ImageMinimizerPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
-      minimizerOptions: {
-        // Lossless optimization with custom option
-        // Feel free to experiment with options for better result for you
-        plugins: [
-          ["gifsicle", { interlaced: true }],
-          ["jpegtran", { progressive: true }],
-          ["optipng", { optimizationLevel: 5 }],
-          [
-            "svgo",
-            {
-              plugins: [
-                {
-                  name: "removeViewBox",
-                  active: false,
-                },
-              ],
+      minimizer: {
+        implementation: ImageMinimizerPlugin.sharpMinify,
+        options: {
+          encodeOptions: {
+            jpeg: {
+              quality: 90,
             },
-          ],
-        ],
+          },
+        },
       },
     }),
     new CleanWebpackPlugin({
