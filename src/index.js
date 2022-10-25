@@ -1,4 +1,6 @@
-let i = 3;
-let timer = setTimeout(() => {
-	console.log(i);
-}, 1000);
+/** @format */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '@/modules/app';
+
+ReactDOM.render(<App />, document.getElementById('root'));
