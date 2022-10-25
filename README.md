@@ -1,2 +1,3 @@
-# Webpack 5 Boilerplate Template
+<!-- @format -->
 
+# React boilerplate project

@@ -1,0 +1,11 @@
+# Ignore artifacts:
+chart
+dist
+node_modules
+
+
+# Ignore all HTML files:
+*.html
+
+Dockerfile
+Jenkinsfile
