@@ -79,7 +79,7 @@ module.exports = {
         type: "asset",
         parser: {
           dataUrlCondition: {
-            maxSize: environment.limits.images,
+            maxSize: environment.limits.fonts,
           },
         },
         generator: {
