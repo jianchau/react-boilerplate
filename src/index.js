@@ -3,6 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '@/modules/app';
+import './Normalize.css';
+import 'antd/dist/antd.css';
+import './index.less';
+
 import ErrorPage from './error-page';
 
 const router = createBrowserRouter([
