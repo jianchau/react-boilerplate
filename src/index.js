@@ -3,9 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, BrowserRouter, useRoutes } from 'react-router-dom';
 import Layout from '@/modules/layout';
+import { Provider } from 'react-redux';
+import store from '@/store';
 import { genRouter, menus, LazyWrapper } from '@/router/index';
-import './Normalize.css';
-import 'antd/dist/antd.css';
+
 import './index.less';
 
 import ErrorPage from './error-page';
@@ -30,6 +31,8 @@ const Main = () => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
-        <Main />
+        <Provider store={store}>
+            <Main />
+        </Provider>
     </BrowserRouter>,
 );

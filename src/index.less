@@ -1,4 +1,28 @@
 /** @format */
+// import Normalize.css
+// overrides ant.design.css if we need
+// set the font-size of root ele by media query
+// and so on
+@import './Normalize.css';
+
+@import 'antd/dist/antd.css';
+
+@media only screen and (max-width: 1600px) and (min-width: 1280px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 1280px) and (min-width: 960px) {
+    html {
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 960px) {
+    html {
+        font-size: 10px;
+    }
+}
+
 html,
 body {
     height: 100%;
