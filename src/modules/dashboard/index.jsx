@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment, asyncIncrement } from '@/store/features/counterSlice';
-
+import styles from './dashboard.module.less';
 export function Counter() {
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export function Counter() {
             </div>
             <br />
             <div>
-                <div style={{ fontSize: '20px' }}>2、zoom browser,you will see the fontsize is changing</div>
+                <div className={styles['zoom']}>2、zoom browser,you will see the fontsize is changing</div>
             </div>
         </div>
     );
