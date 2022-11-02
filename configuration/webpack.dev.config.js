@@ -25,7 +25,7 @@ module.exports = {
         open: true,
         compress: true,
         hot: false,
-
+        historyApiFallback: true,
         ...environment.server,
     },
 
