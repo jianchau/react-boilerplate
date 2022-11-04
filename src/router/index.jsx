@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { lazy, Suspense } from 'react';
-
+import { HomeOutlined } from '@ant-design/icons';
 const LazyWrapper = (path) => {
     const Component = lazy(() => import(`../modules${path}`));
     return (
@@ -10,30 +10,32 @@ const LazyWrapper = (path) => {
         </Suspense>
     );
 };
+// in real project,menus is often binded with account
+// front end get it by send a request(eg:user init)
 const menus = [
     {
         id: '1',
         name: '首页',
         path: '/dashboard',
-        icon: '',
+        icon: <HomeOutlined />,
     },
     {
         id: '2',
         name: '模块1',
         path: '/module1',
-        icon: '',
+        icon: <HomeOutlined />,
     },
     {
         id: '4',
         name: '二级菜单',
         path: '',
-        icon: '',
+        icon: <HomeOutlined />,
         children: [
             {
                 id: '5',
                 name: '模块2',
                 path: '/module2',
-                icon: '',
+                icon: <HomeOutlined />,
             },
         ],
     },
