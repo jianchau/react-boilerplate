@@ -6,7 +6,7 @@ import { Breadcrumb, Layout, Menu } from 'antd';
 const { Header, Content, Sider } = Layout;
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { menus } from '@/router';
-import { forEach, isBuffer } from '@/utils';
+import { forEach, isArray } from '@/utils';
 import styles from './layout1.module.less';
 const LayoutPage = () => {
     const navigate = useNavigate();
@@ -34,18 +34,27 @@ const LayoutPage = () => {
     const genBreadcrumb = (pathname) => {
         let breadcrumb = [];
         function func(menus) {
-            for (const item of menus) {
-                if (item.path !== pathname && (!item.children || item.children.length < 1)) {
-                    breadcrumb = [];
-                } else if (item.path !== pathname && item.children.length >= 1) {
+            for (const idx in menus) {
+                if (menus[idx].path !== pathname && (!menus[idx].children || menus[idx].children.length < 1)) {
+                    // idx is like '0'
+                    if (Number(idx) === menus.length - 1) {
+                        // this path fail,clean breadcrumbItems
+                        breadcrumb = [];
+                    } else {
+                        // do nothing
+                    }
+                } else if (menus[idx].path !== pathname && isArray(menus[idx].children) && menus[idx].children.length >= 1) {
+                    // this path may be succeful,stach this segment
                     breadcrumb.push({
-                        label: item.name,
-                        key: item.path,
+                        label: menus[idx].name,
+                        key: menus[idx].path,
                     });
-                    let isFound = func(item.children);
+                    // only one path exactly math,find it,return
+                    let isFound = func(menus[idx].children);
                     if (isFound) return;
                 } else {
-                    breadcrumb.push({ label: item.name, key: item.path });
+                    // this path succed,mark it as true
+                    breadcrumb.push({ label: menus[idx].name, key: menus[idx].path });
                     return true;
                 }
             }

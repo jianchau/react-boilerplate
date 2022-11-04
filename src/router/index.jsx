@@ -3,7 +3,7 @@
 import React, { lazy, Suspense } from 'react';
 import { HomeOutlined } from '@ant-design/icons';
 const LazyWrapper = (path) => {
-    const Component = lazy(() => import(`../modules${path}`));
+    const Component = lazy(() => import(`../pages${path}`));
     return (
         <Suspense fallback={<div>loading</div>}>
             <Component />
