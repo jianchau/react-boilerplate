@@ -1,20 +1,77 @@
 /** @format */
 
-.logo {
-    width: 120px;
-    height: 31px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px 28px 16px 0;
-    float: left;
+/** @format */
+.layout {
+    height: 100%;
+}
+.header {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #3f86ff !important;
+    height: 80px !important;
+    .breadcrumb {
+        height: 80px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 40px;
+    }
+}
+
+.sider {
+    width: 288px !important;
+    flex: 0 0 288px !important;
+    max-width: 288px !important;
+    min-width: 288px !important;
+    background: #0e2752 !important;
+    .logo {
+        background: #0e2752;
+        width: 288px;
+        height: 80px;
+        font-size: 24px;
+        font-family: PingFang SC-Heavy, PingFang SC;
+        font-weight: 800;
+        color: #3f86ff;
+        line-height: 80px;
+        text-align: center;
+
+        .icon {
+            width: 36px;
+            height: 34px;
+            margin-right: 18px;
+        }
+    }
+    .menu {
+        width: 288px !important;
+        background: #0e2752 !important;
+        overflow-x: hidden;
+        color: white;
+        border-right: 0;
+    }
 }
 .content {
     background: white;
     margin: 24px;
     min-height: 280px;
 }
-.breadcrumb {
-    padding-left: 20px !important;
-    height: 28px;
-    line-height: 28px;
-    background: white;
+
+:global {
+    .diy-sider {
+        .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+            background: #3f86ff;
+            color: white;
+            overflow-x: hidden;
+        }
+        .ant-menu-inline .ant-menu-item::after {
+            border-right: 0;
+        }
+        .ant-menu-sub {
+            background: #0e2752 !important;
+            color: white;
+        }
+        .ant-layout-sider-children {
+            width: 288px;
+        }
+    }
 }
