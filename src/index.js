@@ -1,9 +1,11 @@
 /** @format */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, BrowserRouter, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import Layout from '@/pages/layout';
 import { Provider } from 'react-redux';
+import zhCN from 'antd/es/locale/zh_CN';
+import { ConfigProvider } from 'antd';
 import store from '@/store';
 import { genRouter, menus, LazyWrapper } from '@/router/index';
 
@@ -32,7 +34,9 @@ const Main = () => {
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <Provider store={store}>
-            <Main />
+            <ConfigProvider locale={zhCN}>
+                <Main />
+            </ConfigProvider>
         </Provider>
     </BrowserRouter>,
 );
