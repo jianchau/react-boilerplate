@@ -1,5 +1,5 @@
 /** @format */
-
+export { request } from './request';
 export {
     isArray,
     isArrayBuffer,
