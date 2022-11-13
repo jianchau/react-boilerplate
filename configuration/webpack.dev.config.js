@@ -26,6 +26,14 @@ module.exports = {
         compress: true,
         hot: false,
         historyApiFallback: true,
+        proxy: {
+            [process.env.PROXY_URL]: {
+                // http://localhost:7001 means nothing,please set the real server address for process.env.REQUEST_RUL in package.json,script start
+                target: process.env.REQUEST_RUL || 'http://localhost:7001',
+                changeOrigin: true,
+                pathRewrite: { ['^' + process.env.PROXY_URL]: '' },
+            },
+        },
         ...environment.server,
     },
 

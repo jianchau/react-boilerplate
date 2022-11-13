@@ -141,6 +141,11 @@ module.exports = {
                 },
             ],
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            'process.env.PROXY_URL': JSON.stringify(process.env.PROXY_URL),
+            'process.env.REQUEST_URL': JSON.stringify(process.env.REQUEST_RUL), // need to set this env varible in package.json first
+        }),
     ].concat(htmlPluginEntries),
     target: 'web',
 };

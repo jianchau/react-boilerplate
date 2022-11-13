@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "cross-env NODE_ENV=development webpack serve --config webpack.config.js --mode=development",
+        "start": "cross-env NODE_ENV=development PROXY_URL=/dev-api webpack serve --config webpack.config.js --mode=development",
         "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --mode=production",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
