@@ -17,7 +17,7 @@ const Main = () => {
     let router = [
         {
             path: '/login',
-            element: LazyWrapper('Login'),
+            element: LazyWrapper('/login'),
         },
         {
             path: '/',

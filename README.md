@@ -1,13 +1,23 @@
 <!-- @format -->
 
-# React boilerplate project
+# Thie is a react web boilerplate project
 
-### webpack5
+## How do we get started?
 
-### react18
+fork this project,yarn && yarn start,we are ready
 
-### react-router6
+![react-boilerplate](./src/static/images/react-boilerplate.png)
 
-### react-redux
+## contains these following important packages
 
-### antd4
+#### webpack5
+
+#### react18
+
+#### react-router6
+
+#### react-redux
+
+#### antd4
+
+#### axios

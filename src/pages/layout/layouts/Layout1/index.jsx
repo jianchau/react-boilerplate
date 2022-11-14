@@ -12,24 +12,30 @@ const LayoutPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const genMenu = (menuConfig) => {
-        return menuConfig.map((menuItem) => {
-            if (menuItem.children) {
-                return {
+        const ret = [];
+        forEach(menuConfig, (menuItem, index, arr) => {
+            if (menuItem.hidden) {
+                // menuItem hidden
+            } else if (menuItem.children && menuItem.children.findIndex((item) => !item.hidden) !== -1) {
+                const data = {
                     key: menuItem.id,
                     label: <div className={styles['menu-label']}>{menuItem.name}</div>,
                     path: menuItem.path,
                     icon: menuItem.icon,
                     children: genMenu(menuItem.children),
                 };
+                ret.push(data);
             } else {
-                return {
+                const data = {
                     key: menuItem.id,
                     label: <div>{menuItem.name}</div>,
                     path: menuItem.path,
                     icon: menuItem.icon,
                 };
+                ret.push(data);
             }
         });
+        return ret;
     };
     const genBreadcrumb = (pathname) => {
         let breadcrumb = [];

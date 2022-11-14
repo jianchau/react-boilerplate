@@ -2,6 +2,7 @@
 
 import React, { lazy, Suspense } from 'react';
 import { HomeOutlined } from '@ant-design/icons';
+import { isArray } from '@/utils';
 const LazyWrapper = (path) => {
     const Component = lazy(() => import(`../pages${path}`));
     return (
@@ -14,20 +15,29 @@ const LazyWrapper = (path) => {
 // front end get it by send a request(eg:user init)
 const menus = [
     {
-        id: '1',
-        name: '首页',
+        id: '/dashboard',
+        name: 'index：counter example',
         path: '/dashboard',
         icon: <HomeOutlined />,
     },
     {
-        id: '2',
-        name: '模块1',
+        id: '/module1',
+        name: 'hidde a child menu',
         path: '/module1',
         icon: <HomeOutlined />,
+        children: [
+            {
+                id: '/module3',
+                name: '模块3',
+                path: '/module3',
+                icon: <HomeOutlined />,
+                hidden: true,
+            },
+        ],
     },
     {
         id: '4',
-        name: '二级菜单',
+        name: '/login to access login',
         path: '',
         icon: <HomeOutlined />,
         children: [
@@ -42,30 +52,29 @@ const menus = [
 ];
 
 const convertPath = (path) => {
-    // let arr = path.split('/');
-    // //  forEach 调用的时候 item 如果普通类型如果给 item 重新赋值 则不会修改原始值
-    // //  如果是引用类型  直接改变指针的指向则原始值不会被修改
-    // //  如果是引用类型  在原来引用的基础上修改会修改原始值
-    // return arr
-    //     .map((item) => {
-    //         if (item) {
-    //             return item[0].toUpperCase() + item.substring(1);
-    //         } else {
-    //             return item;
-    //         }
-    //     })
-    //     .join('/');
+    // if neccessary,we can do url convert job here
     return path;
 };
 // 收集所有的叶子节点，生成路由信息
 const genRouter = (menusConfig, router) => {
     menusConfig.forEach((menuItem) => {
+        // gen route for first level
         if (!menuItem.children) {
             router.push({
                 path: menuItem.path,
                 element: LazyWrapper(convertPath(menuItem.path)),
             });
-        } else {
+        }
+        // gen route for first level and recursive
+        else if (isArray(menuItem.children) && menuItem.children.findIndex((item) => !item.hidden) === -1) {
+            router.push({
+                path: menuItem.path,
+                element: LazyWrapper(convertPath(menuItem.path)),
+            });
+            genRouter(menuItem.children, router);
+        }
+        // do not gen route for first level,but for children
+        else {
             genRouter(menuItem.children, router);
         }
     });
